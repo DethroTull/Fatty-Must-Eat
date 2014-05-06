@@ -1,5 +1,4 @@
-#Fatty Must Eat Version 0.0017
-#Python 2.7
+#Fatty Must Eat Version 0.0016
 import time
 import random
 import array

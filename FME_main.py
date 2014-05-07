@@ -4,9 +4,18 @@ import random
 import array
 import csv
 import os
+import sys
 
 log = open("c:/FME/FME_log.txt", "w") #open log file
-fme_conf = open('c:/FME/fatty_conf.csv', 'r') #open the configuration file
+importfilename = "c:/FME/fatty_conf.csv"
+
+if os.path.isfile(importfilename):
+    fme_conf = open(importfilename, 'r') #open the configuration file
+else:    
+    print(importfilename + " doesn't exist. How else will we know how many fatties need to eat?")
+    log.close()
+    sys.exit()
+
 
 fme_csv = csv.reader(fme_conf) #init csv reader
 #assign total fatties and max hunger from csv file

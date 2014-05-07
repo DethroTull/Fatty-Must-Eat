@@ -32,6 +32,7 @@ for row in fme_csv:
 array_max = int(d)
 dude_hunger_skill = array.array('i', xrange(array_max))
 dude_age = array.array('i', xrange(array_max))
+dude_int_skill = array.array('i', xrange(array_max))
 
 #function foodSearch argument hunger_skill
 def foodSearch(h):
@@ -45,8 +46,11 @@ def foodSearch(h):
 c1 = 0 #hunger_skill counter
 c2 = 0 #dude simulator counter
 c3 = 0 #age output counter
+c4 = 0 #int_skill counter
+
 max_hunger = int(h)
 hp_max = int(hp)
+
 
 log.write("Total Fatties: " + d)
 log.write("\nMax Hunger: " + str(max_hunger) + "\n")
@@ -57,6 +61,13 @@ while c1 < array_max:
     print("Fatty #" + str(c1 + 1) + " Hunger Skill: " +  str(dude_hunger_skill[c1]))
     log.write("\nFatty #" + str(c1 + 1) + " Hunger Skill: " +  str(dude_hunger_skill[c1]) + "\n")
     c1 += 1
+
+while c4 < array_max:
+    dude_int_skill[c4] = random.randrange(0,2)
+    print("Fatty #" + str(c4 + 1) + " Int Skill: " + str(dude_int_skill[c4]))
+    log.write("Fatty #" + str(c4 + 1) + " Int Skill: " + str(dude_int_skill[c4]) + "\n")
+    c4 += 1
+      
 
 #Daily calculations for fatties
 while c2 < array_max:

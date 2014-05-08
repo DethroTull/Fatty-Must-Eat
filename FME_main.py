@@ -30,14 +30,16 @@ for row in fme_csv:
     d = row[1]
     h = row[3]
     hp = row[5]
+    gx = row[7]
+    gy = row[9]
 
 #User input for number of dudes
 #d = raw_input("Enter total number of fatties: ")
 #print
 
 #map generation
-grid_x = 10 #total columns
-grid_y = 10 #total rows
+grid_x = int(gx) #total columns
+grid_y = int(gy) #total rows
 grid = [[0 for x in xrange(grid_x)] for x in xrange(grid_y)] #array to store the grid
 
 print(grid)

@@ -1,4 +1,4 @@
-#Fatty Must Eat Version 0.0021
+#Fatty Must Eat Version 0.0022
 import time
 import random
 import array
@@ -28,6 +28,26 @@ for row in fme_csv:
 #d = raw_input("Enter total number of fatties: ")
 #print
 
+#map generation
+grid_x = 10 #total columns
+grid_y = 10 #total rows
+grid = [[0 for x in xrange(grid_x)] for x in xrange(grid_y)] #array to store the grid
+
+print(grid)
+
+#populate the grid with random food values
+cx = 0
+
+while cx < grid_x:
+    cy = 0
+    while cy < grid_y:
+        grid[cx][cy] = random.randrange(0,4)
+        cy += 1
+    cx += 1
+
+print(grid)
+print
+
 #Array generation
 array_max = int(d)
 dude_hunger_skill = array.array('i', xrange(array_max))
@@ -35,10 +55,10 @@ dude_age = array.array('i', xrange(array_max))
 dude_int_skill = array.array('i', xrange(array_max))
 
 #function foodSearch argument hunger_skill
-def foodSearch(h):
+def foodSearch(h, f):
     fsearch = random.randrange(0, 10)
     if (fsearch + h) > 7:
-        food = random.randrange(1, 4)
+        food = f
     else:
         food = 0
     return food
@@ -76,22 +96,51 @@ while c2 < array_max:
     hunger = max_hunger
     t0 = time.time()
     fatty_hp = hp_max
+    pos_x = random.randrange(0, grid_x)
+    pos_y = random.randrange(0, grid_y)
+    grid_food = 0
     
     print("\nFatty #" + str(c2 + 1) + " calculating")
     log.write("\n")
     log.write("\nFatty #" + str(c2 +1))
+    log.write("\nStarting Location " + str(pos_x) + "," + str(pos_y))
     
     while dead == 0 and day < 100:
         t1 = time.time()
 
         if (t1 - t0) >= 2.0: #Each day is X.X seconds
-            food_found = foodSearch(dude_hunger_skill[c2])
+            #Start random movement
+            move = random.randrange(0, 4)
+            log.write("\nmove = " + str(move) + "\n")
+            if move == 0:
+                if pos_x > 0 and pos_x < grid_x:
+                    pos_x -= 1
+                    log.write("Up 1\n")
+            if move == 1:
+                if pos_y > -1 and pos_y < (grid_y - 1):
+                    pos_y += 1
+                    log.write("Right 1\n")
+            if move == 2:
+                if pos_x > -1 and pos_x < (grid_x - 1):
+                    pos_x += 1
+                    log.write("Down 1\n")
+            if move == 3:
+                if pos_y > 0 and pos_y < grid_y:
+                    pos_y -= 1
+                    log.write("Left 1\n")
+            #End random movement
+            grid_food = grid[pos_x][pos_y] #assign variable if food is found based on map location
+            
+            food_found = foodSearch(dude_hunger_skill[c2], grid_food) 
             hunger = hunger + food_found
             if hunger > max_hunger:
                 hunger = max_hunger
             log.write("\nDay " + str(day + 1) + " Hunger " + str(hunger))
-            log.write("\nYou found " + str(food_found) + " units of food") 
+            log.write("\nYou found " + str(food_found) + " units of food")
+            log.write("\nPresent Location " + str(pos_x) + "," + str(pos_y))
             hunger -= 1
+            if hunger < 0:
+                hunger = 0
             day += 1
             if hunger <= 0:
                 fatty_hp -= 1

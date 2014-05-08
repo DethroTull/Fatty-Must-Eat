@@ -5,9 +5,16 @@ import array
 import csv
 import os
 import sys
+import platform
 
-log = open("c:/FME/FME_log.txt", "w") #open log file
-importfilename = "c:/FME/fatty_conf.csv"
+if(os.name == "posix" and platform.system() == "Darwin"):
+    logfilename = "FME_log.txt"
+    importfilename = "fatty_conf.csv"
+elif (os.name == "nt"):
+    logfilename = "c:/FME/FME_log.txt"
+    importfilename = "c:/FME/fatty_conf.csv"
+    
+log = open(logfilename, "w+") #open log file
 
 if os.path.isfile(importfilename):
     fme_conf = open(importfilename, 'r') #open the configuration file

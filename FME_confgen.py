@@ -1,8 +1,16 @@
 #Fatty Must Eat configuration file generator 0.0001
 #Writing main variables to a csv file
 #Uses c:\FME for the directory
+import os
+import sys
+import platform
 
-fatty_conf = open("c:/FME/fatty_conf.csv", "w") #Open the csv file
+if(os.name == "posix" and platform.system() == "Darwin"):
+    importfilename = "fatty_conf.csv"
+elif (os.name == "nt"):
+    importfilename = "c:/FME/fatty_conf.csv"
+
+fatty_conf = open(importfilename, "w") #Open the csv file
 
 #input for main variables
 fatty_total = raw_input("Enter total number of fatties: ") 

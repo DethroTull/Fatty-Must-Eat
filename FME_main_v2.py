@@ -8,6 +8,7 @@ import platform
 
 from Class_Fatty import Fatty
 
+
 if(os.name == "posix" and platform.system() == "Darwin"):
     logfilename = "FME_log.txt"
     importfilename = "fatty_conf.csv"
@@ -16,7 +17,7 @@ elif (os.name == "nt"):
     importfilename = "c:/FME/fatty_conf.csv"
 
 log = open(logfilename, "w") #open log file
-    
+
 if os.path.isfile(importfilename):
     fme_conf = open(importfilename, 'r') #open the configuration file
 else:    
@@ -41,7 +42,6 @@ day_count = 1
 # create a fatty, and add him to the list
 for i in range(num_fatties):
     temp_fatty = Fatty()
-    temp_fatty.talk()
     fatty_array.append(temp_fatty)
 
 while day_count <= total_days:
@@ -52,6 +52,7 @@ while day_count <= total_days:
 
     for fatty in fatty_array:
         if(fatty.dead == 0):
+            fatty.talk()
             #print("Fatty " + str(fatty_count) + " is looking for food")
             fatty.search_for_food()
             fatty.hunger -= 1
@@ -61,7 +62,11 @@ while day_count <= total_days:
 
             elif(fatty.hp < 1):
                 fatty.dead = 1
-                print(fatty.firstname + " " + fatty.lastname + " " + fatty.deathcause()) 
+                print(fatty.firstname + " " + fatty.lastname + " " + fatty.deathcause())
+
+            fatty.days_alive += 1
+        #else:
+            #print(fatty.fullname + " is dead.") 
 
         if(random.randrange(0,10) >= 8):
             fatty.hp = 0
@@ -69,6 +74,9 @@ while day_count <= total_days:
         fatty_count += 1
 
     day_count += 1
-    
+
+print("\n")
+for fatty in fatty_array:
+    print(fatty.fullname + " lived " + str(fatty.days_alive) + " days.")
 log.close()
 fme_conf.close()

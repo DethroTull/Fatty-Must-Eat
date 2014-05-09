@@ -15,6 +15,11 @@ grid_forage = [[0 for x in xrange(grid_x)] for x in xrange(grid_y)]
 #print(grid_forage)
 grid_hunt = [[0 for x in xrange(grid_x)] for x in xrange(grid_y)]
 
+fatty_array = []
+for i in range(max_fatty):
+    temp_fatty = Fatty()
+    fatty_array.append(temp_fatty)
+
 cgx = 0
 while cgx < grid_x:
     cgy = 0
@@ -49,91 +54,110 @@ def foodResolv(f):
     else:
         return 0
 
-fatty1 = Fatty()
-print("MP: " + str(fatty1.max_ap))
-print("Int: " + str(fatty1.int))
-print("Forage: " + str(fatty1.foraging))
-print("Hunt: " + str(fatty1.foraging))
-print("Starting location: " + str(pos_x) + "," + str(pos_y))
+
+print
+cfat = 1
+for fatty in fatty_array:
+    print("Fatty #" + str(cfat))
+    print("MP: " + str(fatty.max_ap))
+    print("Int: " + str(fatty.int))
+    print("Forage: " + str(fatty.foraging))
+    print("Hunt: " + str(fatty.foraging))
+    print("Starting location: " + str(pos_x) + "," + str(pos_y) + "\n")
+    cfat += 1
+
+#fatty1 = Fatty()
+    
+#print("MP: " + str(fatty1.max_ap))
+#print("Int: " + str(fatty1.int))
+#print("Forage: " + str(fatty1.foraging))
+#print("Hunt: " + str(fatty1.foraging))
+#print("Starting location: " + str(pos_x) + "," + str(pos_y))
 
 cd = 0
+cfat = 1
 while cd < max_day:
     cm = 0
-    print("Day #" + str(cd+1))
-    while cm < fatty1.max_ap:
-        move = random.randrange(0,4)
-        print("Move #" + str(cm + 1))
-        print("Move Roll: " + str(move))
-        if move == 0:
-            if pos_x > 0 and pos_x < grid_x:
-                pos_x -= 1
-                print("Up 1")
+    print("Day #" + str(cd+1) + "\n")
+    for fatty in fatty_array:
+        print("Fatty #" + str(cfat))
+        while cm < fatty.max_ap:
+            move = random.randrange(0,4)
+            print("Move #" + str(cm + 1))
+            print("Move Roll: " + str(move))
+            if move == 0:
+                if pos_x > 0 and pos_x < grid_x:
+                    pos_x -= 1
+                    print("Up 1")
+                else:
+                    print("Bump top!")
+            if move == 1:
+                if pos_y > -1 and pos_y < (grid_y - 1):
+                    pos_y += 1
+                    print("Right 1")
+                else:
+                    print("Bump right!")
+            if move == 2:
+                if pos_x > -1 and pos_x < (grid_x - 1):
+                    pos_x += 1
+                    print("Down 1")
+                else:
+                    print("Bump down!")
+            if move == 3:
+                if pos_y > 0 and pos_y < grid_y:
+                    pos_y -= 1
+                    print("Left 1")
+                else:
+                    print("Bump left!")
+            cm += 1
+        print("Current Location: " + str(pos_x) + "," + str(pos_y))
+        print("Forage: " + str(grid_forage[pos_x][pos_y]) + " Hunting: " +
+              str(grid_hunt[pos_x][pos_y]))
+        choice = intResolv(fatty.int)
+        print("Choice resolution: " + str(choice))
+        if choice == 1:
+            print("Int check success!")
+            if fatty.foraging > fatty.hunting:
+                food_forage = foodResolv(fatty.foraging)
+                if food_forage == 1:
+                    food_found = grid_forage[pos_x][pos_y]
+                    print("Fatty foraged " + str(food_found) + " unit(s) of food.\n")
+                else:
+                    food_found = 0
+                    print("Fatty foraging failed.\n")
             else:
-                print("Bump top!")
-        if move == 1:
-            if pos_y > -1 and pos_y < (grid_y - 1):
-                pos_y += 1
-                print("Right 1")
-            else:
-                print("Bump right!")
-        if move == 2:
-            if pos_x > -1 and pos_x < (grid_x - 1):
-                pos_x += 1
-                print("Down 1")
-            else:
-                print("Bump down!")
-        if move == 3:
-            if pos_y > 0 and pos_y < grid_y:
-                pos_y -= 1
-                print("Left 1")
-            else:
-                print("Bump left!")
-        cm += 1
-    print("Current Location: " + str(pos_x) + "," + str(pos_y))
-    print("Forage: " + str(grid_forage[pos_x][pos_y]) + " Hunting: " +
-          str(grid_hunt[pos_x][pos_y]))
-    choice = intResolv(fatty1.int)
-    print("Choice resolution: " + str(choice))
-    if choice == 1:
-        print("Int check success!")
-        if fatty1.foraging > fatty1.hunting:
-            food_forage = foodResolv(fatty1.foraging)
-            if food_forage == 1:
-                food_found = grid_forage[pos_x][pos_y]
-                print("Fatty foraged " + str(food_found) + " unit(s) of food.")
-            else:
-                food_found = 0
-                print("Fatty foraging failed.")
+                food_hunt = foodResolv(fatty.hunting)
+                if food_hunt == 1:
+                    food_found = grid_hunt[pos_x][pos_y]
+                    print("Fatty hunted " + str(food_found) + " unit(s) of food.\n")
+                else:
+                    food_found = 0
+                    print("Fatty hunting failed.\n")
         else:
-            food_hunt = foodResolv(fatty1.hunting)
-            if food_hunt == 1:
-                food_found = grid_hunt[pos_x][pos_y]
-                print("Fatty hunted " + str(food_found) + " unit(s) of food.")
+            print("Int check failed!")
+            food_random = random.randrange(0,3)
+            if food_random == 1:
+                food_forage = foodResolv(fatty.foraging)
+                if food_forage == 1:
+                    food_found = grid_forage[pos_x][pos_y]
+                    print("Fatty foraged " + str(food_found) + " unit(s) of food.\n")
+                else:
+                    food_found = 0
+                    print("Fatty foraging failed.\n")
+            elif food_random == 0:
+                food_hunt = foodResolv(fatty.hunting)
+                if food_hunt == 1:
+                    food_found = grid_hunt[pos_x][pos_y]
+                    print("Fatty hunted " + str(food_found) + " unit(s) of food.\n")
+                else:
+                    food_found = 0
+                    print("Fatty hunting failed.\n")
             else:
                 food_found = 0
-                print("Fatty hunting failed.")
-    else:
-        print("Int check failed!")
-        food_random = random.randrange(0,3)
-        if food_random == 1:
-            food_forage = foodResolv(fatty1.foraging)
-            if food_forage == 1:
-                food_found = grid_forage[pos_x][pos_y]
-                print("Fatty foraged " + str(food_found) + " unit(s) of food.")
-            else:
-                food_found = 0
-                print("Fatty foraging failed.")
-        elif food_random == 0:
-            food_hunt = foodResolv(fatty1.hunting)
-            if food_hunt == 1:
-                food_found = grid_hunt[pos_x][pos_y]
-                print("Fatty hunted " + str(food_found) + " unit(s) of food.")
-            else:
-                food_found = 0
-                print("Fatty hunting failed.")
-        else:
-            food_found = 0
-            print("Fatty shit his pants.")
+                print("Fatty shit his pants.\n")
+        cfat += 1
+        cm = 0
+    cfat = 1
     cd += 1
 
 print("DONE!")

@@ -1,20 +1,31 @@
 from MapClass import FMEmap
 import array
 
-test = FMEmap(10,10,1,3,2)
+loc = [2, 5]
+
+test = FMEmap(10, 10)
 test.displayHunt()
 print
 test.displayPlant()
 print
-test.displayLocation()
+loc = test.moveMap(loc, 3)
 print
-loc = test.getLocation()
-print(loc)
+print(test.getHunt(loc))
 print
-test.moveMap()
+print(test.getPlant(loc))
 print
-test.displayLocation()
+test.displayHunt()
 print
-print(test.getHunt())
+test.displayPlant()
 print
-print(test.getPlant())
+loc = test.moveMap(loc, 3)
+print
+print(test.getHunt(loc))
+print
+print(test.getPlant(loc))
+print
+test.displayHunt()
+print
+test.displayPlant()
+print
+print("Final location: " + str(loc[0]) + "," + str(loc[1]))

@@ -7,6 +7,11 @@ import sys
 import platform
 
 from Class_Fatty import Fatty
+from MapClass import FMEmap
+from DisasterClass import Disaster
+
+max_x = 20
+max_y = 20
 
 
 if(os.name == "posix" and platform.system() == "Darwin"):
@@ -29,19 +34,27 @@ else:
 fme_csv = csv.reader(fme_conf) #init csv reader
 #assign total fatties and max hunger from csv file
 for row in fme_csv:
-    num_fatties = 5
+    num_fatties = 3
     max_hunger = 10
     max_hp = 10
+
+#map generation
+grid = FMEmap(max_x,max_y)
 
 # empty list of fatties
 fatty_array = []
 total_days = 20
 day_count = 1
 
+#print maps for hunting and foraging
+grid.displayHunt()
+print
+grid.displayPlant()
+print
 
 # create a fatty, and add him to the list
 for i in range(num_fatties):
-    temp_fatty = Fatty()
+    temp_fatty = Fatty(max_x,max_y)
     fatty_array.append(temp_fatty)
 
 while day_count <= total_days:
@@ -53,8 +66,10 @@ while day_count <= total_days:
     for fatty in fatty_array:
         if(fatty.dead == 0):
             fatty.talk()
-            #print("Fatty " + str(fatty_count) + " is looking for food")
-            fatty.search_for_food()
+            print("Fatty " + str(fatty_count) + " is looking for food")
+            fatty.location = grid.moveMap(fatty.location,fatty.mp)
+            f_amount = grid.getHunt(fatty.location)
+            fatty.huntFood(f_amount)
             fatty.hunger -= 1
             if(fatty.hunger < 1):
                 fatty.dead = 1
@@ -68,8 +83,8 @@ while day_count <= total_days:
         #else:
             #print(fatty.fullname + " is dead.") 
 
-        if(random.randrange(0,10) >= 8):
-            fatty.hp = 0
+        #if(random.randrange(0,10) >= 8):
+         #   fatty.hp = 0
             
         fatty_count += 1
 

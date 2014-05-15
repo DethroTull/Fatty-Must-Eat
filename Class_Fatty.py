@@ -1,5 +1,7 @@
 import random
 
+#The Fatty Class needs to have a max x/y when generatated.
+#   This will allow the initial location of the fatty to stay within the grid.
 class Fatty:
     """ This is the main Fatty class """
     sayings = ['Butter!  Fatty want butter!',
@@ -38,10 +40,14 @@ class Fatty:
             'died when [subjective] sat on a chair and it broke under [possessive] massive girth.'
             ]
     
-    def __init__(self):
-        self.hunting = random.randrange(0,3)
-        self.foraging = random.randrange(0,3)
-        self.intelligence = random.randrange(0,2)
+    def __init__(self, max_x, max_y):
+        self.max_x = max_x #maximum rows for the grid
+        self.max_y = max_y #maximum columns for the grid
+        self.location = [random.randrange(0,self.max_x),random.randrange(0,self.max_y)] #random starting location
+        self.mp = random.randrange(1,3) #movement points
+        self.hunting = random.randrange(0,3) #hunting skill
+        self.foraging = random.randrange(0,3) #foraging skill
+        self.intelligence = random.randrange(0,2) #intelligence skill
         self.hunger = 10
         self.max_hunger = 10
         self.max_hp = 10
@@ -86,14 +92,29 @@ class Fatty:
             fatty_saying = random.randrange(0, len(self.sayings))
             print("\n" + self.firstname + " " + self.lastname + " sez: " + self.sayings[fatty_saying] + "\n")
 
-    def search_for_food(self):
+    #hunting function which takes the food amount supplied to the function
+    def huntFood(self, f):
         search = random.randrange(0,10)
-        if (search + self.hunting > 7):
-            food = random.randrange(0,3)
+        if (search + self.hunting > 7): #use the hunting skill to modify the hunt RNG
+            food = f #if the hunt is successful assign food from an outside source
         else:
-            food = 0
+            food = 0 #if the hunt is unsuccessful no food is found
 
-        self.hunger += food
+        self.hunger += food #increase the hunger count by the amount of food found
+        if self.hunger > self.max_hunger:
+            self.hunger = self.max_hunger #does not allow the hunger count above max hunger
+
+    #foraging fuction which takes the food amount supplied to the function
+    def forageFood(self, f):
+        search = random.randrange(0,10)
+        if (search + self.foraging > 7): #use the foraginging skill to modify the forage RNG
+            food = f #if the forage is successful assign food from an outside source
+        else:
+            food = 0 #if the hunt is unsuccessful no food is found
+
+        self.hunger += food #increase the hunger count by the amount of food found
+        if self.hunger > self.max_hunger:
+            self.hunger = self.max_hunger #does not allow the hunger count above max hunger
 
         #print(self.fullname + " found " + str(food) + " units of food.")
         

@@ -1,0 +1,25 @@
+{
+    "wolf" : {
+    		"aggressive" : 1,
+    		"hp" : {"min" : 10, "max" : 15},
+    		"mp" : 2,
+    		"dead" : 0,
+    		"location" : {"x" : 3, "y" : 3},
+    		"food" : 2,
+    		"max_hunger" : 30,
+    		"hunger" : 30,
+    		"hunger_ratio" : 1
+
+    	 },
+    "chicken" : {
+    		"aggressive" : 0,
+    		"hp" : {"min" : 2, "max" : 4},
+    		"mp" : 1,
+    		"dead" : 0,
+    		"location" : {"x" : 1, "y" : 4},
+    		"food" : 2,
+    		"max_hunger" : 4,
+    		"hunger" : 4,
+    		"hunger_ratio" : 1
+    	 }
+}

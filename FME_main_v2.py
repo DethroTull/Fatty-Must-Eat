@@ -57,11 +57,11 @@ max_hp = 10
 if(os.name == "posix" and platform.system() == "Darwin"):
     logfilename = "FME_log.txt"
     importfilename = "fatty_conf.csv"
-    #animal_stat_json = json.loads("FME_animals.txt")
+    animal_stat_json = json.load(open("FME_animals.json"))
 elif (os.name == "nt"):
     logfilename = "c:/FME/FME_log.txt"
     importfilename = "c:/FME/fatty_conf.csv"
-    #animal_stat_json = json.loads("c:/FME/FME_animals.txt")
+    animal_stat_json = json.load(open("c:/FME/FME_animals.json"))
 
 log = open(logfilename, "w") #open log file
 

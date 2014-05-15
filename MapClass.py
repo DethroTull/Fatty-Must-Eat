@@ -48,7 +48,7 @@ class FMEmap:
         cm = 0
         while cm < mp:
             move = random.randrange(0,4) #generate a random number for direction
-            print("Move = " + str(move) + "\n")
+            #print("Move = " + str(move) + "\n")
 
             #calculate the new location based on the move RNG result
             #if the random move is off the grid the location is left as the same
@@ -56,27 +56,27 @@ class FMEmap:
             if move == 0:
                 if location[0] > 0 and location[0] < self.max_x:
                     location[0] -= 1
-                    print("Up 1\n")
-                else:
-                    print("Bump Top!\n")
+                   # print("Up 1\n")
+                #else:
+                    #print("Bump Top!\n")
             if move == 1:
                 if location[1] > -1 and location[1] < (self.max_y - 1):
                     location[1] += 1
-                    print("Right 1\n")
-                else:
-                    print("Bump Right!\n")
+                    #print("Right 1\n")
+                #else:
+                    #print("Bump Right!\n")
             if move == 2:
                 if location[0] > -1 and location[0] < (self.max_x - 1):
                     location[0] += 1
-                    print("Down 1\n")
-                else:
-                    print("Bump Bottom!\n")
+                    #print("Down 1\n")
+                #else:
+                    #print("Bump Bottom!\n")
             if move == 3:
                 if location[1] > 0 and location[1] < self.max_y:
                     location[1] -= 1
-                    print("Left 1\n")
-                else:
-                    print("Bump Left!\n")
+                    #print("Left 1\n")
+                #else:
+                    #print("Bump Left!\n")
             cm += 1
         cm = 0
         return location #return the new location array

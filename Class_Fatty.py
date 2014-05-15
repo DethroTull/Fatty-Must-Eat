@@ -40,13 +40,14 @@ class Fatty:
             'died when [subjective] sat on a chair and it broke under [possessive] massive girth.'
             ]
     
-    def __init__(self, max_x, max_y):
+    def __init__(self, sid, max_x, max_y):
+        self.id = sid
         self.max_x = max_x #maximum rows for the grid
         self.max_y = max_y #maximum columns for the grid
         self.location = [random.randrange(0,self.max_x),random.randrange(0,self.max_y)] #random starting location
         self.mp = random.randrange(1,3) #movement points
-        self.hunting = random.randrange(0,3) #hunting skill
-        self.foraging = random.randrange(0,3) #foraging skill
+        self.hunting = random.randrange(0,10) #hunting skill
+        self.foraging = random.randrange(0,10) #foraging skill
         self.intelligence = random.randrange(0,2) #intelligence skill
         self.hunger = 10
         self.max_hunger = 10
@@ -62,6 +63,21 @@ class Fatty:
         self.fullname = self.firstname + " " + self.lastname
         self.bmi = 0
         self.days_alive = 0
+        self.awareness = random.randrange(0,5)
+        self.hiding = 0
+        self.aggression = random.randrange(0,5)
+        self.pain_resistance = random.randrange(0,5)
+        self.luck = 0
+        self.age = 0
+        self.agility = random.randrange(1,10)
+        self.dodge = random.randrange(1,5)
+        self.dexterity = 0
+        self.strength = random.randrange(1, 5)
+
+        # Physical (combat, athletics, sports, all of that)
+        # Mental (purely intellectual stuff, knowledge, analysis)
+        # Social (persuasion, languages, acting etc)
+        # Practical (this covered arts, crafts, mechanics and maintenance, driving, etc)
 
         print("A wild Fatty appears!")
         print("Say \"moo\" to " + self.fullname + ".\n")
@@ -132,4 +148,23 @@ class Fatty:
         deathtext = deathtext.replace("[subjective]", self.pronouns[self.sex]['subjective'])
         deathtext = deathtext.replace("[objective]", self.pronouns[self.sex]['objective'])
         return deathtext
+
+    def attack(self, attackee):
+        if attackee.awareness > self.awareness:
+            chance_to_hide = random.randrange(0,5)
+            if chance_to_hide == 4:
+                print(self.fullname + " lost track of " + attackee.fullname + ". Where could they have went?")
+                return
+            else:
+                print(self.fullname + " missed " + attackee.fullname + ".")
+        elif self.agility > attackee.dodge:
+            damage = random.randrange(1,3)
+            attackee.hp -= damage
+            print(self.fullname + " hit " + attackee.fullname + " for " + str(damage) + " damage.  Ouch!")
+        else:
+            print(self.fullname + " missed " + attackee.fullname + ".")
+
+
+
+
         

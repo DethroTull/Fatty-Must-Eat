@@ -2,55 +2,20 @@ from Class_Moveable import Moveable
 import random
 
 class Animal(Moveable):
-#                '' : {
-#                		'aggressive' : ,
-#                		'hp' : {'min' : , 'max' : },
-#                		'mp' :,
-#                		'dead' : ,
-#                		'location' : {'x' : , 'y' :}
-#                	 },
-#                }
-
-	animal_types = ['wolf', 'chicken']
-	animal_type_stats = {
-                'wolf' : {
-                		'aggressive' : 1,
-                		'hp' : {'min' : 10, 'max' : 15},
-                		'mp' : 2,
-                		'dead' : 0,
-                		'location' : {'x' : 3, 'y' : 3},
-                		'food' : 2,
-                		'max_hunger' : 30,
-                		'hunger' : 30,
-                		'hunger_ratio' : 1
-
-                	 },
-                'chicken' : {
-                		'aggressive' : 0,
-                		'hp' : {'min' : 2, 'max' : 4},
-                		'mp' : 1,
-                		'dead' : 0,
-                		'location' : {'x' : 1, 'y' : 4},
-                		'food' : 2,
-                		'max_hunger' : 4,
-                		'hunger' : 4,
-                		'hunger_ratio' : 1
-                	 }
-                }
-
-	def __init__(self, sid, max_x, max_y):
+	
+	def __init__(self, sid, max_x, max_y, animal_type_stats):
 		self.id = sid
-		self.animal_type = self.animal_types[random.randrange(0,2)]
+		self.animal_type = animal_type_stats['animal_type']
 		self.fullname = self.animal_type + " #" + str(self.id)
-		self.aggressive = self.animal_type_stats[self.animal_type]['aggressive']
-		self.hp = random.randrange(self.animal_type_stats[self.animal_type]['hp']['min'], self.animal_type_stats[self.animal_type]['hp']['max'])
-		self.mp = self.animal_type_stats[self.animal_type]['mp']
+		self.aggressive = animal_type_stats['aggressive']
+		self.hp = random.randrange(animal_type_stats['hp']['min'], animal_type_stats['hp']['max'])
+		self.mp = animal_type_stats['mp']
 		self.dead = 0
-		self.location = [self.animal_type_stats[self.animal_type]['location']['x'], self.animal_type_stats[self.animal_type]['location']['y']]
+		self.location = [animal_type_stats['location']['x'], animal_type_stats['location']['y']]
 		self.strength = random.randrange(4, 10)
-		self.hunger = self.animal_type_stats[self.animal_type]['hunger']
-		self.max_hunger = self.animal_type_stats[self.animal_type]['max_hunger']
-		self.hunger_ratio = self.animal_type_stats[self.animal_type]['hunger_ratio']
+		self.hunger = animal_type_stats['hunger']
+		self.max_hunger = animal_type_stats['max_hunger']
+		self.hunger_ratio = animal_type_stats['hunger_ratio']
 	def talk(self):
 		pass
 

@@ -57,11 +57,11 @@ max_hp = 10
 if(os.name == "posix" and platform.system() == "Darwin"):
     logfilename = "FME_log.txt"
     importfilename = "fatty_conf.csv"
-    animal_stat_json = json.load(open("FME_animals.json"))
+    animalsfilename= "FME_animals.json"
 elif (os.name == "nt"):
     logfilename = "c:/FME/FME_log.txt"
     importfilename = "c:/FME/fatty_conf.csv"
-    animal_stat_json = json.load(open("c:/FME/FME_animals.json"))
+    animalsfilename = "c:/FME/FME_animals.json" 
 
 log = open(logfilename, "w") #open log file
 
@@ -71,6 +71,14 @@ else:
     print(importfilename + " doesn't exist. How else will we know how many fatties need to eat?")
     log.close()
     sys.exit()
+
+if os.path.isfile(animalsfilename):
+    animals_json = json.load(open(animalsfilename))
+else:
+    print(animalsfilename + " doesn't exist. Fatties need to eat.")
+    log.close()
+    sys.exit()
+
 
 
 #fme_csv = csv.reader(fme_conf) #init csv reader
@@ -94,7 +102,9 @@ for i in range(num_fatties):
 
 # create an animal, and add it to the list
 for i in range(num_animals):
-    temp_animal = Animal(i, max_x, max_y)
+    animal_keys = animals_json.keys()
+    animal_type_key = animal_keys[random.randrange(0, len(animal_keys))]
+    temp_animal = Animal(i, max_x, max_y, animals_json[animal_type_key])
     animal_array.append(temp_animal)
 
 while day_count <= total_days:
@@ -125,28 +135,28 @@ while day_count <= total_days:
             fatty.huntFood(f_amount)
 
             # random occurrences for dumb fatties.
-            if fatty.intelligence == 0:
-                chance_to_attack = random.randrange(0,10)
-                if chance_to_attack > 7:
-                    enemy_item = common_items[random.randrange(0, len(common_items))]
-                    enemy_item_dmg = random.randrange(1, 4)
-                    print(fatty.fullname + " is done taking shit from this " + enemy_item + ".  Attack!")
-                    #time.sleep(1)
-                    print("\"Duhhh take that, " + enemy_item + ".\"\n")
-                    print(enemy_item + " hits " + fatty.fullname + " for " + str(enemy_item_dmg) + " damage.\n")
-                    fatty.hp -= enemy_item_dmg
-                    #time.sleep(1)
-                    print("\"You fight hard, " + enemy_item + ".\"\n")
-                    print(fatty.fullname + " takes one from " + enemy_item + " for " + str(enemy_item_dmg) + " damage.\n")
-                    #time.sleep(1)
-                    fatty.hp -= enemy_item_dmg
-                    print("\"Ow. ow.  ow.         ow!!!!\"\n")
-                    print("A critical attack from " + enemy_item +"! Christ, " + fatty.fullname + " you're pathetic. " + str(enemy_item_dmg) + " damage.\n")
-                    #time.sleep(1)
-                    fatty.hp -= enemy_item_dmg
-                    print("\"Is that all you got, " + enemy_item + "?\"\n")
-                    print(fatty.fullname + " took a beating.  " + str(enemy_item_dmg) + " damage.\n")
-                    fatty.hp -= enemy_item_dmg
+            # if fatty.intelligence == 0:
+            #     chance_to_attack = random.randrange(0,10)
+            #     if chance_to_attack > 7:
+            #         enemy_item = common_items[random.randrange(0, len(common_items))]
+            #         enemy_item_dmg = random.randrange(1, 4)
+            #         print(fatty.fullname + " is done taking shit from this " + enemy_item + ".  Attack!")
+            #         #time.sleep(1)
+            #         print("\"Duhhh take that, " + enemy_item + ".\"\n")
+            #         print(enemy_item + " hits " + fatty.fullname + " for " + str(enemy_item_dmg) + " damage.\n")
+            #         fatty.hp -= enemy_item_dmg
+            #         #time.sleep(1)
+            #         print("\"You fight hard, " + enemy_item + ".\"\n")
+            #         print(fatty.fullname + " takes one from " + enemy_item + " for " + str(enemy_item_dmg) + " damage.\n")
+            #         #time.sleep(1)
+            #         fatty.hp -= enemy_item_dmg
+            #         print("\"Ow. ow.  ow.         ow!!!!\"\n")
+            #         print("A critical attack from " + enemy_item +"! Christ, " + fatty.fullname + " you're pathetic. " + str(enemy_item_dmg) + " damage.\n")
+            #         #time.sleep(1)
+            #         fatty.hp -= enemy_item_dmg
+            #         print("\"Is that all you got, " + enemy_item + "?\"\n")
+            #         print(fatty.fullname + " took a beating.  " + str(enemy_item_dmg) + " damage.\n")
+            #         fatty.hp -= enemy_item_dmg
 
             fatty.hunger -= 1
             if(fatty.hunger < 1 and fatty.dead != 1):

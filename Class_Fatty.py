@@ -1,8 +1,9 @@
+from Class_Moveable import Moveable
 import random
 
 #The Fatty Class needs to have a max x/y when generatated.
 #   This will allow the initial location of the fatty to stay within the grid.
-class Fatty:
+class Fatty(Moveable):
     """ This is the main Fatty class """
     sayings = ['Butter!  Fatty want butter!',
                'Feeeed mmmmeeeeeee!',
@@ -73,6 +74,7 @@ class Fatty:
         self.dodge = random.randrange(1,5)
         self.dexterity = 0
         self.strength = random.randrange(1, 5)
+        self.food = 4
 
         # Physical (combat, athletics, sports, all of that)
         # Mental (purely intellectual stuff, knowledge, analysis)
@@ -149,22 +151,24 @@ class Fatty:
         deathtext = deathtext.replace("[objective]", self.pronouns[self.sex]['objective'])
         return deathtext
 
-    def attack(self, attackee):
-        if attackee.awareness > self.awareness:
-            chance_to_hide = random.randrange(0,5)
-            if chance_to_hide == 4:
-                print(self.fullname + " lost track of " + attackee.fullname + ". Where could they have went?")
-                return
-            else:
-                print(self.fullname + " missed " + attackee.fullname + ".")
-        elif self.agility > attackee.dodge:
-            damage = random.randrange(1,3)
-            attackee.hp -= damage
-            print(self.fullname + " hit " + attackee.fullname + " for " + str(damage) + " damage.  Ouch!")
-        else:
-            print(self.fullname + " missed " + attackee.fullname + ".")
+    def update(self, day_count):
+        pass
+
+    # def attack(self, attackee):
+    #     if attackee.awareness > self.awareness:
+    #         chance_to_hide = random.randrange(0,5)
+    #         if chance_to_hide == 4:
+    #             print(self.fullname + " lost track of " + attackee.fullname + ". Where could they have went?")
+    #             return
+    #         else:
+    #             print(self.fullname + " missed " + attackee.fullname + ".")
+    #     elif self.agility > attackee.dodge:
+    #         damage = random.randrange(1,3)
+    #         attackee.hp -= damage
+    #         print(self.fullname + " hit " + attackee.fullname + " for " + str(damage) + " damage.  Ouch!")
+    #     else:
+    #         print(self.fullname + " missed " + attackee.fullname + ".")
 
 
-
-
-        
+    # def somefunc(self):
+    #     Moveable.somefunc(self)

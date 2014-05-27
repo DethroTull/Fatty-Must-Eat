@@ -126,7 +126,7 @@
             "food" : 7,
             "max_hunger" : 10,
             "hunger" : 10,
-            "hunger_ratio" : 1 
+            "hunger_ratio" : 0 
 
          },
     "candiru fish" : {
@@ -165,7 +165,7 @@
             "food" : 6,
             "max_hunger" : 10 ,
             "hunger" : 10,
-            "hunger_ratio" : 1 
+            "hunger_ratio" : 0 
 
          },
     "chicken" : {

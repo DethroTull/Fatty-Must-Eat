@@ -151,8 +151,6 @@ class Fatty(Moveable):
         deathtext = deathtext.replace("[objective]", self.pronouns[self.sex]['objective'])
         return deathtext
 
-    def update(self, day_count):
-        pass
 
     # def attack(self, attackee):
     #     if attackee.awareness > self.awareness:

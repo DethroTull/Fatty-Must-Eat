@@ -1,4 +1,5 @@
 from Class_Moveable import Moveable
+import uuid
 import random
 
 #The Fatty Class needs to have a max x/y when generatated.
@@ -41,8 +42,9 @@ class Fatty(Moveable):
             'died when [subjective] sat on a chair and it broke under [possessive] massive girth.'
             ]
     
-    def __init__(self, sid, max_x, max_y):
-        self.id = sid
+    def __init__(self, max_x, max_y):
+        self.id = uuid.uuid4()
+        self.type = "fatty"
         self.max_x = max_x #maximum rows for the grid
         self.max_y = max_y #maximum columns for the grid
         self.location = [random.randrange(0,self.max_x),random.randrange(0,self.max_y)] #random starting location
@@ -94,7 +96,6 @@ class Fatty(Moveable):
         
 
     def talk(self):
-        #print(self.fullname + " hunger: " + str(self.hunger))
         #if(self.hunger <= 1):
 #            print(self.firstname + " " + self.lastname + " sez: I'm feeling faint.  Everything is blurry.")
 #        elif(self.hunger < 3):
@@ -108,7 +109,7 @@ class Fatty(Moveable):
 
         if should_talk == 10:
             fatty_saying = random.randrange(0, len(self.sayings))
-            print("\n" + self.firstname + " " + self.lastname + " sez: " + self.sayings[fatty_saying] + "\n")
+            print("\n" + self.firstname + " " + self.lastname + " [HP:" + str(self.hp) + "/" + str(self.max_hp) + "] sez: " + self.sayings[fatty_saying] + "\n")
 
     #hunting function which takes the food amount supplied to the function
     def huntFood(self, f):
@@ -150,6 +151,10 @@ class Fatty(Moveable):
         deathtext = deathtext.replace("[subjective]", self.pronouns[self.sex]['subjective'])
         deathtext = deathtext.replace("[objective]", self.pronouns[self.sex]['objective'])
         return deathtext
+
+
+    def update(self, day_count):
+        self.talk()
 
 
     # def attack(self, attackee):

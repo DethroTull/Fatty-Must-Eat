@@ -6,7 +6,6 @@ import os
 import sys
 import platform
 import json
-import uuid
 from Class_Fatty import Fatty
 #from MapClass import FMEmap
 from DisasterClass import Disaster
@@ -19,11 +18,11 @@ class EntityFactory(object):
 
 	def createEntity(self, entityType, max_x, max_y, statJson = ""):
 		if entityType == "fatty":
-			tempEntity = Fatty(uuid.uuid4(), max_x, max_y )
+			tempEntity = Fatty(max_x, max_y )
 		elif entityType == "animal":
 			animalKeys = statJson.keys()
 			animalType = animalKeys[random.randrange(0, len(animalKeys))]
-			tempEntity = Animal(uuid.uuid4(), max_x, max_y, statJson[animalType])
+			tempEntity = Animal(max_x, max_y, statJson[animalType])
 		elif entityType == "deity":
 			# To DO
 			pass

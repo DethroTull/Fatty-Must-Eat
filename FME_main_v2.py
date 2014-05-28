@@ -55,8 +55,8 @@ common_items = [
 # list_of_dead_animals = []
 total_days = 20
 day_count = 1
-num_fatties = 3
-num_animals = 9
+num_fatties = 5
+num_animals = 5
 max_hunger = 10
 max_hp = 10
 # fatty_id_counter = 0
@@ -96,14 +96,6 @@ else:
 #for row in fme_csv:
 
 
-#map generation
-grid = FMEmap(max_x,max_y)
-
-#print maps for hunting and foraging
-grid.displayHunt()
-print
-grid.displayPlant()
-print
 
 
 # while day_count <= total_days:
@@ -224,8 +216,14 @@ print
 def main():
     day_count = 1
 
+    #map generation
+    grid = FMEmap(max_x,max_y)
+    #print maps for hunting and foraging
+    #grid.displayHunt()
+    #print
+    # grid.displayPlant()
+    # print
     entityManager = EntityManager()
-    battleSystem = BattleSystem(entityManager)
     # create a fatty, and add him to the list
     for i in range(num_fatties):
         entityManager.add(entityFactory.createEntity("fatty", max_x, max_y))
@@ -233,7 +231,9 @@ def main():
     # create an animal, and add it to the list
     for i in range(num_animals):
         entityManager.add(entityFactory.createEntity("animal", max_x, max_y, animals_json))
-        
+
+    battleSystem = BattleSystem(entityManager, grid)
+
     while day_count <= total_days:
         print("--------------------------")
         print("| Day of Fat #" + str(day_count) + " begins. |")
@@ -246,6 +246,8 @@ def main():
         battleSystem.update()
 
         day_count += 1
+
+    grid.displayGrid()
 
 if __name__ == "__main__":
     main()

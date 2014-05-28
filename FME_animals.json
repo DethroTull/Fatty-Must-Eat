@@ -1,20 +1,20 @@
 {
     "wolf" : {
             "animal_type" : "wolf",
-    		"aggressive" : 1,
-    		"hp" : {"min" : 10, "max" : 15},
-    		"mp" : 2,
-    		"dead" : 0,
-    		"location" : {"x" : 3, "y" : 3},
-    		"food" : 2,
-    		"max_hunger" : 30,
-    		"hunger" : 30,
-    		"hunger_ratio" : 1
+            "aggression" : 4,
+            "hp" : {"min" : 10, "max" : 15},
+            "mp" : 2,
+            "dead" : 0,
+            "location" : {"x" : 3, "y" : 3},
+            "food" : 2,
+            "max_hunger" : 30,
+            "hunger" : 30,
+            "hunger_ratio" : 1
 
-    	 },
+         },
     "cat" : {
             "animal_type" : "cat",
-            "aggressive" : 0,
+            "aggression" : 0,
             "hp" : {"min" : 5, "max" : 10},
             "mp" : 2,
             "dead" : 0,
@@ -27,7 +27,7 @@
          },
     "dog" : {
             "animal_type" : "dog",
-            "aggressive" : 0,
+            "aggression" : 1,
             "hp" : {"min" : 8, "max" : 12},
             "mp" : 1,
             "dead" : 0,
@@ -40,7 +40,7 @@
          },
     "tiger" : {
             "animal_type" : "tiger",
-            "aggressive" : 1,
+            "aggression" : 6,
             "hp" : {"min" : 20, "max" : 35},
             "mp" : 1,
             "dead" : 0,
@@ -53,7 +53,7 @@
          },
     "lion" : {
             "animal_type" : "lion",
-            "aggressive" : 1,
+            "aggression" : 6,
             "hp" : {"min" : 25, "max" : 35},
             "mp" : 1,
             "dead" : 0,
@@ -66,7 +66,7 @@
          },
     "bear" : {
             "animal_type" : "bear",
-            "aggressive" : 1,
+            "aggression" : 4,
             "hp" : {"min" : 25, "max" : 35},
             "mp" : 1,
             "dead" : 0,
@@ -79,7 +79,7 @@
          },
     "rabbit" : {
             "animal_type" : "rabbit",
-            "aggressive" : 0,
+            "aggression" : 0,
             "hp" : {"min" : 5 , "max" : 7},
             "mp" : 2,
             "dead" : 0,
@@ -92,7 +92,7 @@
          },
     "dick-butt" : {
             "animal_type" : "dick-butt",
-            "aggressive" : 1,
+            "aggression" : 9,
             "hp" : {"min" : 8, "max" : 20},
             "mp" : 2,
             "dead" : 0,
@@ -105,7 +105,7 @@
          },
     "hobo" : {
             "animal_type" : "hobo",
-            "aggressive" : 0,
+            "aggression" : 1,
             "hp" : {"min" : 8, "max" : 12},
             "mp" : 1,
             "dead" : 0,
@@ -118,7 +118,7 @@
          },
     "turkey" : {
             "animal_type" : "turkey",
-            "aggressive" : 0,
+            "aggression" : 0,
             "hp" : {"min" : 7, "max" : 9},
             "mp" : 1,
             "dead" : 0,
@@ -131,7 +131,7 @@
          },
     "candiru fish" : {
             "animal_type" : "candiru fish",
-            "aggressive" : 1,
+            "aggression" : 2,
             "hp" : {"min" : 4, "max" : 5},
             "mp" : 2,
             "dead" : 0,
@@ -144,7 +144,7 @@
          },
     "squirrel" : {
             "animal_type" : "squirrel",
-            "aggressive" : 0,
+            "aggression" : 0,
             "hp" : {"min" : 3 , "max" : 6},
             "mp" : 1,
             "dead" : 0,
@@ -157,7 +157,7 @@
          },
     "deer" : {
             "animal_type" : "deer",
-            "aggressive" : 0,
+            "aggression" : 0,
             "hp" : {"min" : 7, "max" : 10},
             "mp" : 2,
             "dead" : 0,
@@ -170,14 +170,14 @@
          },
     "chicken" : {
             "animal_type" : "chicken",
-    		"aggressive" : 0,
-    		"hp" : {"min" : 2, "max" : 4},
-    		"mp" : 1,
-    		"dead" : 0,
-    		"location" : {"x" : 1, "y" : 4},
-    		"food" : 2,
-    		"max_hunger" : 4,
-    		"hunger" : 4,
-    		"hunger_ratio" : 0
-    	 }
+            "aggression" : 0,
+            "hp" : {"min" : 2, "max" : 4},
+            "mp" : 1,
+            "dead" : 0,
+            "location" : {"x" : 1, "y" : 4},
+            "food" : 2,
+            "max_hunger" : 4,
+            "hunger" : 4,
+            "hunger_ratio" : 0
+         }
 }

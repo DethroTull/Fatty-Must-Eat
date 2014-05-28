@@ -14,16 +14,30 @@ import array
 
 class FMEmap:
 
+    gridMap = []
+
     #Class constructor for hunting and foraging map generation
     def __init__ (self, max_x, max_y):
         self.max_x = max_x
         self.max_y = max_y
         self.hunt = [[random.randrange(0,4) for x in xrange(max_x)] for x in xrange(max_y)]
         self.plant = [[random.randrange(0,4) for x in xrange(max_x)] for x in xrange(max_y)]
+        self.gridMap = [[0 for j in range(max_x)] for i in range(max_y)] 
+
+        self.initGrid()
+
+
+    def initGrid(self):
+        i = 0
+        for i in range(self.max_x):
+            j = 0
+            for j in range(self.max_y):
+                self.gridMap[i][j] = []
 
     #function for printing out the current hunting food values
     def displayHunt(self):
         cx = 0
+        print("Hunts")
         while cx < self.max_x:
             cy = 0
             while cy < self.max_y:
@@ -34,6 +48,7 @@ class FMEmap:
 
     #function for printing out the current foraging food values
     def displayPlant(self):
+        print("Plants")
         cx = 0
         while cx < self.max_x:
             cy = 0
@@ -80,6 +95,23 @@ class FMEmap:
             cm += 1
         cm = 0
         return location #return the new location array
+
+    def moveEntity(self, entity):
+        oldlocation = [entity.location[0], entity.location[1]]
+        newLocation = self.moveMap(entity.location, entity.mp)
+
+        if self.gridMap[oldlocation[0]][oldlocation[1]].count(entity) > 0:
+            index = self.gridMap[oldlocation[0]][oldlocation[1]].index(entity) 
+            self.gridMap[oldlocation[0]][oldlocation[1]].remove(entity)
+
+        self.gridMap[newLocation[0]][newLocation[1]].append(entity)
+        print entity.fullname + " moved from " + str(oldlocation) + " to " + str(entity.location)
+
+    def displayGrid(self):
+        for row in self.gridMap:
+            print row
+        pass
+
 
     #function to return the current hunting value if it is between 1 and 3
     #If the value is returned the new value is set to 9

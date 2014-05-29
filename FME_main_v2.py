@@ -7,9 +7,6 @@ import sys
 import platform
 import json
 
-from Class_FattyContainer import FattyContainer
-from Class_AnimalContainer import AnimalContainer
-from Class_DeityContainer import DeityContainer
 from Class_BattleSystem import BattleSystem
 from Class_EntityManager import EntityManager
 from Class_EntityFactory import EntityFactory

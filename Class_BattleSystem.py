@@ -21,15 +21,25 @@ class BattleSystem:
         # else:
         #     print(attackingEntity.fullname + " missed " + defendingEntity.fullname + ".")
 		attack_cycles = 0
+		special_attack = 0
+                print
+                print (attackingEntity.fullname + " and " + defendingEntity.fullname + " get into a scuffle!")
 		while True:
-			damage_to_enemy = random.randrange(0, attackingEntity.strength)
-			damage_from_enemy = random.randrange(0, defendingEntity.strength)
+                        sa_random = random.randrange(0, 20)
+                        if sa_random > 17 and attackingEntity.has_special == 1:
+                                print ("Critical Attack!")
+                                print (attackingEntity.special)
+                                print (attackingEntity.fullname + " destroyed " + defendingEntity.fullname)
+                                defendingEntity.hp = 0
+                        else:
+                                damage_to_enemy = random.randrange(0, attackingEntity.strength)
+                                damage_from_enemy = random.randrange(0, defendingEntity.strength)
 
-			print("A " + attackingEntity.fullname + " [HP:" + str(attackingEntity.hp) + "/" + str(attackingEntity.max_hp) + "]" + " wallops " + defendingEntity.fullname + " for " + str(damage_to_enemy) + " damage.")
-			print(defendingEntity.fullname + " [HP:" + str(defendingEntity.hp) + "/" + str(defendingEntity.max_hp) + "]" + " pummels " + attackingEntity.fullname + " for " + str(damage_from_enemy) + " damage.")
+                                print("A " + attackingEntity.fullname + " [HP:" + str(attackingEntity.hp) + "/" + str(attackingEntity.max_hp) + "]" + " wallops " + defendingEntity.fullname + " for " + str(damage_to_enemy) + " damage.")
+                                print(defendingEntity.fullname + " [HP:" + str(defendingEntity.hp) + "/" + str(defendingEntity.max_hp) + "]" + " pummels " + attackingEntity.fullname + " for " + str(damage_from_enemy) + " damage.")
 
-			defendingEntity.hp -= damage_to_enemy
-			attackingEntity.hp -= damage_from_enemy
+                                defendingEntity.hp -= damage_to_enemy
+                                attackingEntity.hp -= damage_from_enemy
 
 			if attack_cycles >= 20:
 				print

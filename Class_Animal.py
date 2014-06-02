@@ -20,6 +20,8 @@ class Animal(Moveable):
 		self.hunger = animal_type_stats['hunger']
 		self.max_hunger = animal_type_stats['max_hunger']
 		self.hunger_ratio = animal_type_stats['hunger_ratio']
+                self.has_special = animal_type_stats['has_special']
+                self.special = animal_type_stats['special']
 		self.old_location = self.location
 	def talk(self):
 		pass

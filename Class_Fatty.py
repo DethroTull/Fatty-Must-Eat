@@ -77,6 +77,7 @@ class Fatty(Moveable):
         self.dexterity = 0
         self.strength = random.randrange(1, 5)
         self.food = 4
+        self.has_special = 0
 
         # Physical (combat, athletics, sports, all of that)
         # Mental (purely intellectual stuff, knowledge, analysis)

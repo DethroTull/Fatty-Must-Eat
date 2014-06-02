@@ -9,7 +9,9 @@
             "food" : 2,
             "max_hunger" : 30,
             "hunger" : 30,
-            "hunger_ratio" : 1
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "The wolf howls at the moon. A fatty is reminded of a t-shirt."
 
          },
     "cat" : {
@@ -22,7 +24,9 @@
             "food" : 1,
             "max_hunger" : 25,
             "hunger" : 25,
-            "hunger_ratio" : 1
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Kitty claws defenders eyes out!"
 
          },
     "dog" : {
@@ -35,7 +39,9 @@
             "food" : 2,
             "max_hunger" : 15,
             "hunger" : 15,
-            "hunger_ratio" : 1
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Dog Placeholder"
 
          },
     "tiger" : {
@@ -48,7 +54,9 @@
             "food" : 4,
             "max_hunger" : 12,
             "hunger" : 12,
-            "hunger_ratio" : 1
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Tiger Placeholder"
 
          },
     "lion" : {
@@ -61,7 +69,9 @@
             "food" : 4,
             "max_hunger" : 12,
             "hunger" : 12,
-            "hunger_ratio" : 1 
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Lion Placeholder"
 
          },
     "bear" : {
@@ -74,7 +84,9 @@
             "food" : 5,
             "max_hunger" : 14,
             "hunger" : 14,
-            "hunger_ratio" : 1 
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Bear Placeholder"
 
          },
     "rabbit" : {
@@ -87,7 +99,9 @@
             "food" : 1,
             "max_hunger" : 1,
             "hunger" : 1,
-            "hunger_ratio" : 0
+            "hunger_ratio" : 0,
+            "has_special" : 1,
+            "special" : "Rabbit Placeholder"
 
          },
     "dick-butt" : {
@@ -100,7 +114,9 @@
             "food" : 2,
             "max_hunger" : 30,
             "hunger" : 30,
-            "hunger_ratio" : 1 
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Sir, a message from Batman!"
 
          },
     "hobo" : {
@@ -113,7 +129,9 @@
             "food" : 4,
             "max_hunger" : 12,
             "hunger" : 12,
-            "hunger_ratio" : 1
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Hobo invokes the powers of Long Neck, Strong Jaw."
 
          },
     "turkey" : {
@@ -126,7 +144,9 @@
             "food" : 7,
             "max_hunger" : 10,
             "hunger" : 10,
-            "hunger_ratio" : 0 
+            "hunger_ratio" : 0,
+            "has_special" : 1,
+            "special" : "Turkey Placeholder"
 
          },
     "candiru fish" : {
@@ -139,7 +159,9 @@
             "food" : 1,
             "max_hunger" : 5,
             "hunger" : 5,
-            "hunger_ratio" : 0 
+            "hunger_ratio" : 1,
+            "has_special" : 1,
+            "special" : "Candiru Fish swims up your pee hole!"  
 
          },
     "squirrel" : {
@@ -152,7 +174,9 @@
             "food" : 1,
             "max_hunger" : 10,
             "hunger" : 10,
-            "hunger_ratio" : 0
+            "hunger_ratio" : 0,
+            "has_special" : 1,
+            "special" : "Squirrel Placeholder"
 
          },
     "deer" : {
@@ -163,9 +187,11 @@
             "dead" : 0,
             "location" : {"x" : 1, "y" : 1},
             "food" : 6,
-            "max_hunger" : 10 ,
+            "max_hunger" : 10,
             "hunger" : 10,
-            "hunger_ratio" : 0 
+            "hunger_ratio" : 0,
+            "has_special" : 1,
+            "special" : "Deer Placeholder"
 
          },
     "chicken" : {
@@ -178,6 +204,8 @@
             "food" : 2,
             "max_hunger" : 4,
             "hunger" : 4,
-            "hunger_ratio" : 0
+            "hunger_ratio" : 0,
+            "has_special" : 1,
+            "special" : "Chicken Placeholder"
          }
 }

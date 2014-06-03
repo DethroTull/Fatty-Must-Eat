@@ -80,7 +80,7 @@ class Fatty(Moveable):
         self.food = 4
         if self.lastname == "Willick":
             self.has_special = 2
-            self.special = self.fullname + " calls down the power of the proletariat to smite the enimies of The Party!"
+            self.special = self.fullname + " calls down the power of the proletariat to smite the enemies of The Party!"
         else:
             self.has_special = 0
 

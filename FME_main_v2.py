@@ -14,6 +14,7 @@ from Class_Fatty import Fatty
 from MapClass import FMEmap
 from DisasterClass import Disaster
 from Class_Animal import Animal
+from Class_Actions import Actions
 
 max_x = 6
 max_y = 6
@@ -230,6 +231,7 @@ def main():
         entityManager.add(entityFactory.createEntity("animal", max_x, max_y, animals_json))
 
     battleSystem = BattleSystem(entityManager, grid)
+    actions = Actions(entityManager)
 
     while day_count <= total_days:
         print("--------------------------")
@@ -241,6 +243,7 @@ def main():
 
         entityManager.update()
         battleSystem.update()
+        actions.update()
 
         day_count += 1
 

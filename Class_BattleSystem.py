@@ -26,11 +26,18 @@ class BattleSystem:
                 print (attackingEntity.fullname + " and " + defendingEntity.fullname + " get into a scuffle!")
 		while True:
                         sa_random = random.randrange(0, 20)
-                        if sa_random > 17 and attackingEntity.has_special == 1:
+                        if attackingEntity.has_special == 2:
+                                print ("Critical Attack!")
+                                print (attackingEntity.special)
+                                print (attackingEntity.fullname + " laid waste to " + defendingEntity.fullname)
+                                defendingEntity.hp = 0
+
+                        elif sa_random > 17 and attackingEntity.has_special == 1:
                                 print ("Critical Attack!")
                                 print (attackingEntity.special)
                                 print (attackingEntity.fullname + " destroyed " + defendingEntity.fullname)
                                 defendingEntity.hp = 0
+
                         else:
                                 damage_to_enemy = random.randrange(0, attackingEntity.strength)
                                 damage_from_enemy = random.randrange(0, defendingEntity.strength)

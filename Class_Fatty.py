@@ -60,6 +60,7 @@ class Fatty(Moveable):
         self.sex = self.sexes[random.randrange(0,2)]
         self.firstname = self.names[self.sex][random.randrange(0, len(self.names[self.sex]))]
         if(self.firstname == "Shawn"):
+            self.firstname = "Comrade Commissar Shawn"
             self.lastname = "Willick"
         else:
             self.lastname = self.names['last'][random.randrange(0, len(self.names['last']))]
@@ -77,7 +78,11 @@ class Fatty(Moveable):
         self.dexterity = 0
         self.strength = random.randrange(1, 5)
         self.food = 4
-        self.has_special = 0
+        if self.lastname == "Willick":
+            self.has_special = 2
+            self.special = self.fullname + " calls down the power of the proletariat to smite the enimies of The Party!"
+        else:
+            self.has_special = 0
 
         # Physical (combat, athletics, sports, all of that)
         # Mental (purely intellectual stuff, knowledge, analysis)

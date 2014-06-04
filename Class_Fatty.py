@@ -52,8 +52,9 @@ class Fatty(Moveable):
         self.hunting = random.randrange(0,10) #hunting skill
         self.foraging = random.randrange(0,10) #foraging skill
         self.intelligence = random.randrange(0,2) #intelligence skill
-        self.hunger = 10
-        self.max_hunger = 10
+        self.max_calories = 2000
+        self.calories = 2000
+        self.hunger_ratio = 20
         self.max_hp = 10
         self.hp = 10
         self.dead = 0
@@ -77,7 +78,7 @@ class Fatty(Moveable):
         self.dodge = random.randrange(1,5)
         self.dexterity = 0
         self.strength = random.randrange(1, 5)
-        self.food = 4
+        self.food = 400
         if self.lastname == "Willick":
             self.has_special = 2
             self.special = self.fullname + " calls down the power of the proletariat to smite the enemies of The Party!"

@@ -17,8 +17,8 @@ class Animal(Moveable):
 #		self.location = [animal_type_stats['location']['x'], animal_type_stats['location']['y']]
 		self.location = [random.randrange(0, max_x), random.randrange(0, max_y)]
 		self.strength = random.randrange(4, 10)
-		self.hunger = animal_type_stats['hunger']
-		self.max_hunger = animal_type_stats['max_hunger']
+		self.calories = animal_type_stats['calories']
+		self.max_calories = animal_type_stats['max_calories']
 		self.hunger_ratio = animal_type_stats['hunger_ratio']
                 self.has_special = animal_type_stats['has_special']
                 self.special = animal_type_stats['special']

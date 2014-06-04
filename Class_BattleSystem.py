@@ -32,11 +32,18 @@ class BattleSystem:
                                 print (attackingEntity.fullname + " laid waste to " + defendingEntity.fullname)
                                 defendingEntity.hp = 0
 
+                        if defendingEntity.has_special == 2:
+                                print ("Critical Attack!")
+                                print (defendingEntity.special)
+                                print (defendingEntity.fullname + " laid waste to " + defendingEntity.fullname)
+                                attackingEntity.hp = 0
+
                         elif sa_random > 17 and attackingEntity.has_special == 1:
                                 print ("Critical Attack!")
                                 print (attackingEntity.special)
                                 print (attackingEntity.fullname + " destroyed " + defendingEntity.fullname)
                                 defendingEntity.hp = 0
+                                attackingEntity.calories -= (attackingEntity.hunger_ratio * 5)
 
                         else:
                                 damage_to_enemy = random.randrange(0, attackingEntity.strength)
@@ -62,14 +69,16 @@ class BattleSystem:
 			if defendingEntity.hp <= 0:
 				print(defendingEntity.fullname + " died.")
 				defendingEntity.dead = 1
-				print(attackingEntity.fullname + " dines on dead " + defendingEntity.fullname + " and eats " + str(defendingEntity.food) + " units.")
-				attackingEntity.hunger += defendingEntity.food
+				print(attackingEntity.fullname + " dines on dead " + defendingEntity.fullname + " and eats " + str(defendingEntity.food) + " calories.")
+                                attackingEntity.calories -= (attackingEntity.hunger_ratio * 5)
+				attackingEntity.calories += defendingEntity.food
 				break
 			elif attackingEntity.hp <= 0:
 				print (attackingEntity.fullname + " died.")
 				attackingEntity.dead = 1
-				print(defendingEntity.fullname + " dines on dead " + attackingEntity.fullname + " and eats " + str(attackingEntity.food) + " units.")
-				defendingEntity.hunger += attackingEntity.food
+				print(defendingEntity.fullname + " dines on dead " + attackingEntity.fullname + " and eats " + str(attackingEntity.food) + " calories.")
+                                defendingEntity.calories -= (defendingEntity.hunger_ratio * 5)
+				defendingEntity.calories += attackingEntity.food
 				break
 
 			attack_cycles += 1
@@ -78,11 +87,11 @@ class BattleSystem:
 
 		if attackingEntity.type == "fatty":
 			if attackingEntity.intelligence == 0:
-				print attackingEntity.fullname + " is re-re dumb and is showing an extra chromosome."
+				print (attackingEntity.fullname + " is re-re dumb and is showing an extra chromosome.")
 			elif attackingEntity.aggression != 0:
-				print attackingEntity.fullname + " wants to kill something."
-			elif attackingEntity.hunger < (attackingEntity.max_hunger * .3):
-				print attackingEntity.fullname + " should find some food."
+				print (attackingEntity.fullname + " wants to kill something.")
+			elif attackingEntity.calories < (attackingEntity.max_calories * .3):
+				print (attackingEntity.fullname + " should find some food.")
 		for defender in defendingEntity:
 			if defender != attackingEntity:
 				if defender.dead == 0:

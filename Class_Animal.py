@@ -14,6 +14,7 @@ class Animal(Moveable):
 		self.mp = animal_type_stats['mp']
 		self.dead = 0
 		self.food = animal_type_stats['food']
+		self.food_type = animal_type_stats['food_type']
 #		self.location = [animal_type_stats['location']['x'], animal_type_stats['location']['y']]
 		self.location = [random.randrange(0, max_x), random.randrange(0, max_y)]
 		self.strength = random.randrange(4, 10)

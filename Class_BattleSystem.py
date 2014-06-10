@@ -71,14 +71,16 @@ class BattleSystem:
 				defendingEntity.dead = 1
 				print(attackingEntity.fullname + " dines on dead " + defendingEntity.fullname + " and eats " + str(defendingEntity.food) + " calories.")
                                 attackingEntity.calories -= (attackingEntity.hunger_ratio * 5)
-				attackingEntity.calories += defendingEntity.food
+                                if attackingEntity.food_type == 1: #check to see if entity is a hunter
+                                        attackingEntity.calories += defendingEntity.food 
 				break
 			elif attackingEntity.hp <= 0:
 				print (attackingEntity.fullname + " died.")
 				attackingEntity.dead = 1
 				print(defendingEntity.fullname + " dines on dead " + attackingEntity.fullname + " and eats " + str(attackingEntity.food) + " calories.")
                                 defendingEntity.calories -= (defendingEntity.hunger_ratio * 5)
-				defendingEntity.calories += attackingEntity.food
+                                if attackingEntity.food_type == 1: #check to see if entity is a hunter
+                                        defendingEntity.calories += attackingEntity.food
 				break
 
 			attack_cycles += 1

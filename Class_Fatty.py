@@ -79,6 +79,7 @@ class Fatty(Moveable):
         self.dexterity = 0
         self.strength = random.randrange(1, 5)
         self.food = 400
+        self.food_type = 1 #1 for hunter, 2 for grazer
         if self.lastname == "Willick":
             self.has_special = 2
             self.special = self.fullname + " calls down the power of the proletariat to smite the enemies of The Party!"
